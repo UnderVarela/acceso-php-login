@@ -10,6 +10,14 @@ if (!isset($_SESSION['ID'])) {
   header('Location: index.php');
 }
 
+// Conectar a la base de datos
+global $con;
+
+// Realizar consulta
+$consulta = "SELECT * FROM wp_users WHERE ID =".$_SESSION['ID'];
+$statement = $conn->query($consulta);
+// Crear sentencia y hacer un fetch de datos
+$usuario = $statement->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +29,7 @@ if (!isset($_SESSION['ID'])) {
 </head>
 <body>
   <h1>Página Privada</h1>
-  Hello! :)  <br>
+  Hello! <?php echo $usuario['user_nicename'];?> :)  <br>
   <a href="./page-private.php?cerrar=true">Cerrar sesión</a>
 </body>
 </html>
