@@ -8,13 +8,12 @@
  * @param { string } Contraseña del usuario de la BBDD
  */
 
-function conectarBBDD (string $host, string $dbname, string $username, string $password): void {
-global $con;
-$con = null;
+function conectarBBDD (string $host, string $dbname, string $username, string $password): mixed {
+
   try {
     $con = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
   } catch (PDOException $err) {
     die($err->getMessage(). '. Consulta con el administrador');
   }
-
+  return $con;
 }

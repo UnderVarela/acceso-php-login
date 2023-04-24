@@ -27,69 +27,20 @@ if (isset($_SERVER['ID'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="assets/login.min.css">
-  <style>
-    .login {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #loginform {
-      max-width: 340px;
-    }
-    #wp-submit {
-      padding: .3rem .5rem;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
+
 </head>
 
 <body class="login">
-
   <div class="container">
-
-  <?php
-  
-  global $con;
-  $error = ''; 
-  // Capturamos envío del formulario mediante php
-  if (isset($_POST['log'])) {
-    // extract($_POST); //--> seguridad (sanitización)
-    $log = htmlspecialchars(trim($_POST['log'])); // trim() limpia los espacios en blanco de izquierda y derecha de un string
-    $pwd = htmlspecialchars(trim($_POST['pwd']));
-    //validación
-    if (empty($log) || empty($pwd)) {
-      $error = 'No puede haber campos vacíos';
-    } else {
-    // Existe el usuario en la base de datos
-    // 1º conectar con las base de datos
-    require_once('./helpers/conectar-base-datos.php');
-    conectarBBDD('localhost', 'under', 'root', '');
-    // 2º comprobar que el usuario existe en la base de datos.
-    $consulta = "SELECT * FROM wp_users WHERE user_login = '$log'"; // Version demo porque falta añadir la contraseña.
-    $sentencia = $con->query($consulta);
-    
-    if ($sentencia->rowCount()) { //truthy > 0
-      // Guardamos la sesión del usuario:
-       $fila = $sentencia->fetch();
-       $_SESSION['ID'] = $fila['ID']; 
-
-       header('Location: page-private.php');
-
-
-    } else { // falsy // El usuario no existe en la base de datos.
-      $error = "Usuario o password incorrecto";
-
-    }
-
-
-    }
-      
-    // $error = 'El usuario '.$log.' no está registrado en el sistema';
-    }
-    
-
-  ?>
     <?php
-      // if ($error !== '') {
+    // Script validacion formulario:
+    // - Declaracion aquí la variable $error. 
+    // - conexion a BBDD.
+    require_once('./includes/formulario-validacion-acceso.php');
+    ?>
+
+    <?php
       if (!empty($error)) {
     ?>
     <!--Mensaje Error  -->

@@ -11,11 +11,11 @@ if (!isset($_SESSION['ID'])) {
 }
 
 // Conectar a la base de datos
-global $con;
-
+require_once('./helpers/conectar-base-datos.php');
+$con = conectarBBDD('localhost', 'under', 'root', '');
 // Realizar consulta
 $consulta = "SELECT * FROM wp_users WHERE ID =".$_SESSION['ID'];
-$statement = $conn->query($consulta);
+$statement = $con->query($consulta);
 // Crear sentencia y hacer un fetch de datos
 $usuario = $statement->fetch();
 ?>
