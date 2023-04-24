@@ -29,7 +29,7 @@ echo isset($_POST['submit']) ? "<mark>Numero de aciertos $aciertos</mark>": '';
      foreach ($preguntas as $pregunta) :
         extract($pregunta); // <--$pregunta, $respuesta, $input, $name
     ?>
-    <fieldset>
+    
       <legend>CUESTIONARIO</legend>
       <div class="preguntas">
         <p><?=$pregunta?></p>
@@ -85,7 +85,7 @@ echo isset($_POST['submit']) ? "<mark>Numero de aciertos $aciertos</mark>": '';
         }
         ?>
       </div>
-    </fieldset>
+    
     <input name="form-submit" type="submit" value="Enviar">
   </form>
 </body>

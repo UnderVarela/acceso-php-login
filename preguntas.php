@@ -43,7 +43,7 @@ $preguntas = [
 
 [
   'pregunta'=> '5. ¿Cuáles son los operadores relacionales?',
-  'respuesta' => 3,
+  'respuesta' => 2,
   'name' => 'p5',
   'input' => ['+, -, *, /, %, ++, —', 
   '&lt;, &gt;, &lt;=, &gt;=, ==, !=',
