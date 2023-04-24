@@ -11,17 +11,9 @@
   
 <h1>Cuestionario</h1>
     <?php
-    require_once('./preguntas.php');
-    $aciertos = 0;
-    // Comprobar respuestas
-    foreach($preguntas as $pregunta) {
-      $key = $pregunta['name']; 
-      if (isset($_POST[$key]) && $_POST[$key] == $pregunta['respuesta']) {
-        $aciertos++;
-      }
-    }
-
-    echo isset($_POST['submit']) ? "<mark>Número de aciertos $aciertos</mark>" : '  ';
+    // Donde recibimos el envio de datos de formulario y contamos respuestas acertadas.
+    require_once('./use-cases/testeo-respuestas.php.php');
+    echo isset($_POST['submit']) ? "<mark>Número de aciertos: $aciertos</mark>" : '  ';
     ?>
 
 <form method="post">
